@@ -1,19 +1,45 @@
 package leetcode75.level1.TreeNode;
 
-import java.util.List;
 
 public class TreeNode {
     public int val;
-    public List<TreeNode> children;
+    public TreeNode left;
+    public TreeNode right;
 
-    public TreeNode() {}
-
-    public TreeNode(int _val) {
-        val = _val;
+    TreeNode() {
     }
 
-    public TreeNode(int _val, List<TreeNode> _children) {
-        val = _val;
-        children = _children;
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+
+    public int getVal() {
+        return val;
+    }
+
+    public void setVal(int val) {
+        this.val = val;
+    }
+
+    public TreeNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(TreeNode left) {
+        this.left = left;
+    }
+
+    public TreeNode getRight() {
+        return right;
+    }
+
+    public void setRight(TreeNode right) {
+        this.right = right;
     }
 }
