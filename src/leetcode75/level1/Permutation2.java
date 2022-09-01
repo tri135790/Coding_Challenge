@@ -1,10 +1,12 @@
 package leetcode75.level1;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-public class Permutation {
+public class Permutation2 {
 
     public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
@@ -19,9 +21,10 @@ public class Permutation {
             res.add(construct(board));
             return;
         }
-
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != -1) {
+            if (nums[i] != -1 && !set.contains(nums[i])) {
+                set.add(nums[i]);
                 board[count] = nums[i];
                 nums[i] = -1;
                 backtracking(nums,board, count + 1, res);
@@ -38,30 +41,7 @@ public class Permutation {
         return list;
     }
 
-    public List<List<Integer>> permute2(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        backtrack(res, new LinkedList<>(), nums);
-        return res;
-    }
-
-    private void backtrack(List<List<Integer>> res, List<Integer> temp, int[] nums) {
-        if (temp.size() == nums.length) {
-            res.add(new LinkedList<>(temp));
-        }
-
-        for (int i =0; i < nums.length; i++) {
-            if (!temp.contains(nums[i])) {
-                temp.add(nums[i]);
-                backtrack(res, temp, nums);
-                temp.remove(temp.size() - 1);
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        int[] test = new int[]{1,2,3};
-        permute(test);
+        permuteUnique(new int[] {1,1,2});
     }
-
-
 }
