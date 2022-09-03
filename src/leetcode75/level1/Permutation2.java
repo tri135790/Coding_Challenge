@@ -42,6 +42,6 @@ public class Permutation2 {
     }
 
     public static void main(String[] args) {
-        permuteUnique(new int[] {1,1,2});
+        permute(new int[] {1,1,2});
     }
 }
