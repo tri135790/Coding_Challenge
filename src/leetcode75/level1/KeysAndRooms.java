@@ -8,7 +8,6 @@ public class KeysAndRooms {
     public static boolean canVisitAllRooms(List<List<Integer>> rooms) {
         boolean[] isVisited = new boolean[rooms.size()];
             isVisited[0] = true;
-            int count = 0;
          dfs(rooms,0, isVisited);
         for (boolean v: isVisited)  // if any room hasn't been visited, return false
             if (!v) return false;
