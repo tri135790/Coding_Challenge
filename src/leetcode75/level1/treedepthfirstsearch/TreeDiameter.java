@@ -5,32 +5,35 @@ import java.util.Map;
 
 class TreeDiameter {
 
+    private static int treeDiameter = 0;
+
     public static int findDiameter(TreeNode root) {
-        Map<TreeNode, Integer> longestPaths = new HashMap<>();
-        longestPaths.put(null, 0);
-        return dfs(root, longestPaths);
+        calculateHeight(root);
+        return treeDiameter;
     }
 
-    private static int dfs(TreeNode node, Map<TreeNode, Integer> longestPaths) {
-        if (node == null) {
+    private static int calculateHeight(TreeNode currentNode) {
+        if (currentNode == null)
             return 0;
+
+        int leftTreeHeight = calculateHeight(currentNode.left);
+        int rightTreeHeight = calculateHeight(currentNode.right);
+
+        // if the current node doesn't have a left or right subtree, we can't have
+        // a path passing through it, since we need a leaf node on each side
+        if (leftTreeHeight != 0 && rightTreeHeight != 0) {
+
+            // diameter at the current node will be equal to the height of left subtree +
+            // the height of right sub-trees + '1' for the current node
+            int diameter = leftTreeHeight + rightTreeHeight + 1;
+
+            // update the global tree diameter
+            treeDiameter = Math.max(treeDiameter, diameter);
         }
 
-        if (node.left == null && node.right == null) {
-            longestPaths.put(node, 1);
-            return 1;
-        }
-
-        int diameterLeft = dfs(node.left, longestPaths);
-        int diameterRight = dfs(node.right, longestPaths);
-
-        int diameterNode = 1 + longestPaths.get(node.left) + longestPaths.get(node.right);
-
-        longestPaths.put(node, Math.max(longestPaths.get(node.left), longestPaths.get(node.right)) + 1);
-
-        return Math.max(diameterNode, Math.max(diameterLeft,
-            diameterRight
-        ));
+        // height of the current node will be equal to the maximum of the heights of
+        // left or right subtrees plus '1' for the current node
+        return Math.max(leftTreeHeight, rightTreeHeight) + 1;
     }
 
     public static void main(String[] args) {
