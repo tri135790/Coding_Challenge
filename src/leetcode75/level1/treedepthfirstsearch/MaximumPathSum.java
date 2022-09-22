@@ -24,7 +24,7 @@ public class MaximumPathSum {
         return Math.max(node.val, maxNode + node.val);
 
     }
-
+ 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -40,7 +40,7 @@ public class MaximumPathSum {
         root.right.right.left = new TreeNode(9);
         System.out.println("Maximum Path Sum: " + MaximumPathSum.findMaximumPathSum(root));
 
-        TreeNode root = new TreeNode(-1);
+        root = new TreeNode(-1);
         root.left = new TreeNode(-3);
         System.out.println("Maximum Path Sum: " + MaximumPathSum.findMaximumPathSum(root));
     }
