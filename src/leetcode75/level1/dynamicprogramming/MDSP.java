@@ -3,7 +3,7 @@ package leetcode75.level1.dynamicprogramming;
 public class MDSP {
 
     public int findMinimumDeletions(String st) {
-        return st.length - recursive(st,0, st.length()-1);
+        return st.length() - recursive(st,0, st.length()-1);
     }
 
     private int recursive(String st, int start, int end) {
